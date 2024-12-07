@@ -1,0 +1,51 @@
+<app-header title="Formulario"></app-header>
+<ion-content>
+  <ion-grid class="form-grid">
+    <ion-row>
+      <ion-col size="12" class="form-title">
+        <h2>Registro de Usuario</h2>
+      </ion-col>
+    </ion-row>
+    <ion-row>
+      <ion-col size="12">
+        <form [formGroup]="formulario" (ngSubmit)="onSubmit()">
+          <ion-item>
+            <ion-label position="floating">Nombre</ion-label>
+            <ion-input formControlName="nombre"></ion-input>
+          </ion-item>
+          <ion-text color="danger" *ngIf="formulario.get('nombre')?.invalid && formulario.get('nombre')?.touched">
+            <p>* El nombre debe tener al menos 5 caracteres.</p>
+          </ion-text>
+
+          <ion-item>
+            <ion-label position="floating">Apellido</ion-label>
+            <ion-input formControlName="apellido"></ion-input>
+          </ion-item>
+          <ion-text color="danger" *ngIf="formulario.get('apellido')?.invalid && formulario.get('apellido')?.touched">
+            <p>* El apellido debe tener al menos 5 caracteres.</p>
+          </ion-text>
+
+          <ion-item>
+            <ion-label position="floating">Edad</ion-label>
+            <ion-input formControlName="edad" type="number"></ion-input>
+          </ion-item>
+          <ion-text color="danger" *ngIf="formulario.get('edad')?.invalid && formulario.get('edad')?.touched">
+            <p>* La edad solo debe contener números.</p>
+          </ion-text>
+
+          <ion-item>
+            <ion-label position="floating">Correo</ion-label>
+            <ion-input formControlName="correo" type="email"></ion-input>
+          </ion-item>
+          <ion-text color="danger" *ngIf="formulario.get('correo')?.invalid && formulario.get('correo')?.touched">
+            <p>* Ingrese un correo válido.</p>
+          </ion-text>
+
+          <ion-button expand="full" type="submit" [disabled]="formulario.invalid" class="submit-button">
+            Enviar
+          </ion-button>
+        </form>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+</ion-content>
